@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript ES6+ Features You Should Know - My Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-post-full {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog-post-full h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 1rem;
+        }
+
+        .blog-content {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-content h2 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .blog-content h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .blog-content pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .blog-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <p>Thoughts, ideas, and stories</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article class="blog-post-full">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+
+            <h1>JavaScript ES6+ Features You Should Know</h1>
+            <div class="blog-date">Published on November 20, 2024</div>
+
+            <div class="blog-content">
+                <p>JavaScript has evolved significantly since its inception. ES6 (ECMAScript 2015) and subsequent versions introduced powerful features that make JavaScript more expressive, readable, and efficient. This guide covers the most important modern JavaScript features that every developer should master.</p>
+
+                <h2>Arrow Functions</h2>
+                <p>Arrow functions provide a concise syntax for writing function expressions and automatically bind the 'this' value.</p>
+
+                <h3>Basic Syntax</h3>
+                <pre><code>// Traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// With body
+const multiply = (a, b) => {
+    return a * b;
+};</code></pre>
+
+                <h3>'this' Binding</h3>
+                <pre><code>// Traditional function - 'this' refers to the calling context
+const obj = {
+    value: 42,
+    getValue: function() {
+        return function() {
+            return this.value; // undefined
+        };
+    }
+};
+
+// Arrow function - 'this' is lexically bound
+const obj = {
+    value: 42,
+    getValue: function() {
+        return () => this.value; // 42
+    }
+};</code></pre>
+
+                <h2>Template Literals</h2>
+                <p>Template literals provide an easier way to create strings with embedded expressions and multi-line strings.</p>
+
+                <pre><code>// String concatenation (old way)
+const name = 'John';
+const greeting = 'Hello, ' + name + '! Today is ' + new Date().toDateString();
+
+// Template literals (new way)
+const greeting = `Hello, ${name}! Today is ${new Date().toDateString()}`;
+
+// Multi-line strings
+const html = `
+    &lt;div&gt;
+        &lt;h1&gt;${title}&lt;/h1&gt;
+        &lt;p&gt;${content}&lt;/p&gt;
+    &lt;/div&gt;
+`;</code></pre>
+
+                <h2>Destructuring Assignment</h2>
+                <p>Destructuring allows you to extract values from arrays and objects into distinct variables.</p>
+
+                <h3>Array Destructuring</h3>
+                <pre><code>const numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;
+console.log(first); // 1
+console.log(second); // 2
+console.log(rest); // [3, 4, 5]
+
+// Swapping variables
+let a = 1, b = 2;
+[a, b] = [b, a];
+console.log(a, b); // 2, 1</code></pre>
+
+                <h3>Object Destructuring</h3>
+                <pre><code>const user = {
+    name: 'John',
+    age: 30,
+    email: 'john@example.com'
+};
+
+const { name, age, email } = user;
+console.log(name, age, email); // John 30 john@example.com
+
+// With default values and renaming
+const { name: fullName = 'Anonymous', age: userAge = 18 } = user;</code></pre>
+
+                <h2>Default Parameters</h2>
+                <p>Functions can now have default parameter values, eliminating the need for manual checks.</p>
+
+                <pre><code>// Old way
+function greet(name) {
+    name = name || 'Anonymous';
+    return `Hello, ${name}!`;
+}
+
+// New way
+function greet(name = 'Anonymous') {
+    return `Hello, ${name}!`;
+}
+
+// Multiple defaults
+function createUser(name = 'Anonymous', age = 18, active = true) {
+    return { name, age, active };
+}</code></pre>
+
+                <h2>Rest and Spread Operators</h2>
+                <p>The rest operator collects multiple elements into an array, while the spread operator expands arrays/objects.</p>
+
+                <h3>Rest Parameters</h3>
+                <pre><code>function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+sum(1, 2, 3, 4, 5); // 15</code></pre>
+
+                <h3>Spread Operator</h3>
+                <pre><code>// Array spreading
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+
+// Object spreading
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const merged = { ...obj1, ...obj2 }; // { a: 1, b: 2, c: 3, d: 4 }
+
+// Function calls
+Math.max(...[1, 2, 3, 4, 5]); // 5</code></pre>
+
+                <h2>Promises and Async/Await</h2>
+                <p>Promises provide a cleaner way to handle asynchronous operations, and async/await makes asynchronous code look synchronous.</p>
+
+                <h3>Promises</h3>
+                <pre><code>const fetchUser = (id) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (id > 0) {
+                resolve({ id, name: 'John' });
+            } else {
+                reject(new Error('Invalid ID'));
+            }
+        }, 1000);
+    });
+};
+
+fetchUser(1)
+    .then(user => console.log(user))
+    .catch(error => console.error(error));</code></pre>
+
+                <h3>Async/Await</h3>
+                <pre><code>const getUserData = async () => {
+    try {
+        const user = await fetchUser(1);
+        const posts = await fetchUserPosts(user.id);
+        return { user, posts };
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+// Usage
+getUserData().then(data => console.log(data));</code></pre>
+
+                <h2>Classes</h2>
+                <p>ES6 introduced class syntax, making object-oriented programming more familiar for developers from other languages.</p>
+
+                <pre><code>class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello, I'm ${this.name}`;
+    }
+
+    static createAnonymous() {
+        return new Person('Anonymous', 0);
+    }
+}
+
+class Employee extends Person {
+    constructor(name, age, jobTitle) {
+        super(name, age);
+        this.jobTitle = jobTitle;
+    }
+
+    greet() {
+        return `${super.greet()} and I work as a ${this.jobTitle}`;
+    }
+}</code></pre>
+
+                <h2>Modules (import/export)</h2>
+                <p>ES6 modules provide a standard way to organize and share code between files.</p>
+
+                <pre><code>// math.js
+export const add = (a, b) => a + b;
+export const multiply = (a, b) => a * b;
+export default class Calculator {
+    // ...
+}
+
+// main.js
+import Calculator, { add, multiply } from './math.js';
+
+console.log(add(2, 3)); // 5
+const calc = new Calculator();</code></pre>
+
+                <h2>Map, Set, and WeakMap/WeakSet</h2>
+                <p>New data structures for better data management.</p>
+
+                <h3>Map</h3>
+                <pre><code>const map = new Map();
+map.set('name', 'John');
+map.set('age', 30);
+
+console.log(map.get('name')); // John
+console.log(map.has('age')); // true
+console.log(map.size); // 2</code></pre>
+
+                <h3>Set</h3>
+                <pre><code>const set = new Set([1, 2, 3, 3, 2]);
+console.log(set); // Set { 1, 2, 3 }
+
+set.add(4);
+set.delete(1);
+console.log(set.has(2)); // true</code></pre>
+
+                <h2>Symbol</h2>
+                <p>Symbols are unique identifiers that can be used as object property keys.</p>
+
+                <pre><code>const id = Symbol('id');
+const user = {
+    name: 'John',
+    [id]: 123
+};
+
+console.log(user[id]); // 123
+console.log(Object.keys(user)); // ['name'] - symbol not included</code></pre>
+
+                <h2>String and Array Methods</h2>
+                <p>New methods for working with strings and arrays.</p>
+
+                <pre><code>// String methods
+'hello'.startsWith('he'); // true
+'hello'.endsWith('lo'); // true
+'hello'.includes('ll'); // true
+'hello'.repeat(3); // 'hellohellohello'
+
+// Array methods
+[1, 2, 3].find(x => x > 1); // 2
+[1, 2, 3].findIndex(x => x > 1); // 1
+[1, 2, 3].includes(2); // true
+[1, 2, 3].some(x => x > 2); // true
+[1, 2, 3].every(x => x > 0); // true</code></pre>
+
+                <h2>Browser Support and Transpilation</h2>
+                <p>While modern browsers support most ES6+ features, you may need to transpile code for older browsers using tools like Babel.</p>
+
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Use const by default, let when you need to reassign</li>
+                    <li>Prefer arrow functions for callbacks</li>
+                    <li>Use template literals instead of string concatenation</li>
+                    <li>Leverage destructuring to make code cleaner</li>
+                    <li>Use async/await for asynchronous code</li>
+                    <li>Take advantage of new array and string methods</li>
+                </ul>
+
+                <h2>Final Thoughts</h2>
+                <p>ES6+ features have transformed JavaScript from a simple scripting language into a powerful, modern programming language. These features not only make code more readable and maintainable but also enable new programming patterns and paradigms.</p>
+
+                <p>Start incorporating these features gradually into your code. The benefits of cleaner, more expressive code will become immediately apparent, and you'll wonder how you ever lived without them!</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

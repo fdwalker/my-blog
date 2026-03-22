@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Accessible Web Applications - My Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-post-full {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog-post-full h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 1rem;
+        }
+
+        .blog-content {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-content h2 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .blog-content h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .blog-content pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .blog-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <p>Thoughts, ideas, and stories</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article class="blog-post-full">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+
+            <h1>Building Accessible Web Applications</h1>
+            <div class="blog-date">Published on November 15, 2024</div>
+
+            <div class="blog-content">
+                <p>Web accessibility is not just a nice-to-have feature – it's essential for creating inclusive digital experiences. With over 1 billion people worldwide living with disabilities, accessible design ensures that everyone can use your website effectively. This comprehensive guide will help you build web applications that are accessible to all users.</p>
+
+                <h2>What is Web Accessibility?</h2>
+                <p>Web accessibility (often abbreviated as a11y) means that websites, tools, and technologies are designed and developed so that people with disabilities can use them. This includes people who have visual, auditory, physical, speech, cognitive, and neurological disabilities.</p>
+
+                <h2>The POUR Principles</h2>
+                <p>The Web Content Accessibility Guidelines (WCAG) are built around four main principles:</p>
+
+                <h3>1. Perceivable</h3>
+                <p>Information and user interface components must be presentable to users in ways they can perceive.</p>
+                <ul>
+                    <li><strong>Text Alternatives:</strong> Provide text alternatives for non-text content</li>
+                    <li><strong>Time-based Media:</strong> Provide alternatives for time-based media</li>
+                    <li><strong>Adaptable:</strong> Create content that can be presented in different ways</li>
+                    <li><strong>Distinguishable:</strong> Make it easier for users to see and hear content</li>
+                </ul>
+
+                <h3>2. Operable</h3>
+                <p>User interface components and navigation must be operable.</p>
+                <ul>
+                    <li><strong>Keyboard Accessible:</strong> Make all functionality available from a keyboard</li>
+                    <li><strong>Enough Time:</strong> Provide users enough time to read and use content</li>
+                    <li><strong>Seizures and Physical Reactions:</strong> Do not design content that causes seizures</li>
+                    <li><strong>Navigable:</strong> Provide ways to help users navigate, find content, and determine where they are</li>
+                </ul>
+
+                <h3>3. Understandable</h3>
+                <p>Information and the operation of user interface must be understandable.</p>
+                <ul>
+                    <li><strong>Readable:</strong> Make text content readable and understandable</li>
+                    <li><strong>Predictable:</strong> Make web pages appear and operate in predictable ways</li>
+                    <li><strong>Input Assistance:</strong> Help users avoid and correct mistakes</li>
+                </ul>
+
+                <h3>4. Robust</h3>
+                <p>Content must be robust enough to be interpreted reliably by a wide variety of user agents, including assistive technologies.</p>
+                <ul>
+                    <li><strong>Compatible:</strong> Maximize compatibility with current and future user agents</li>
+                </ul>
+
+                <h2>Semantic HTML</h2>
+                <p>Using the correct HTML elements provides meaning and structure to your content, which assistive technologies can understand.</p>
+
+                <h3>Proper Heading Hierarchy</h3>
+                <pre><code>&lt;!-- Good: Proper heading structure --&gt;
+&lt;h1&gt;Main Page Title&lt;/h1&gt;
+&lt;h2&gt;Section Title&lt;/h2&gt;
+&lt;h3&gt;Subsection Title&lt;/h3&gt;
+
+&lt;!-- Bad: Skipping heading levels --&gt;
+&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h3&gt;Subsection Title&lt;/h3&gt; &lt;!-- Skips h2 --&gt;</code></pre>
+
+                <h3>Landmarks and Regions</h3>
+                <pre><code>&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#main"&gt;Skip to main content&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="main"&gt;
+    &lt;!-- Main content --&gt;
+&lt;/main&gt;
+
+&lt;aside&gt;
+    &lt;!-- Sidebar content --&gt;
+&lt;/aside&gt;
+
+&lt;footer&gt;
+    &lt;!-- Footer content --&gt;
+&lt;/footer&gt;</code></pre>
+
+                <h2>ARIA (Accessible Rich Internet Applications)</h2>
+                <p>ARIA provides additional attributes to enhance the accessibility of HTML elements.</p>
+
+                <h3>Common ARIA Attributes</h3>
+                <ul>
+                    <li><strong>aria-label:</strong> Provides a label for an element</li>
+                    <li><strong>aria-labelledby:</strong> References another element for labeling</li>
+                    <li><strong>aria-describedby:</strong> References another element for description</li>
+                    <li><strong>aria-expanded:</strong> Indicates if an element is expanded or collapsed</li>
+                    <li><strong>aria-hidden:</strong> Hides content from assistive technologies</li>
+                    <li><strong>role:</strong> Defines the role of an element</li>
+                </ul>
+
+                <h3>ARIA Example</h3>
+                <pre><code>&lt;button aria-expanded="false" aria-controls="menu"&gt;
+    Menu
+&lt;/button&gt;
+
+&lt;ul id="menu" aria-hidden="true"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+                <h2>Keyboard Navigation</h2>
+                <p>Ensure all interactive elements can be accessed and operated using only the keyboard.</p>
+
+                <h3>Focus Management</h3>
+                <pre><code>/* Ensure focus indicators are visible */
+*:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+/* Skip links for screen readers */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+}
+
+.skip-link:focus {
+    left: 10px;
+    top: 10px;
+}</code></pre>
+
+                <h3>Trap Focus in Modals</h3>
+                <pre><code>function trapFocus(element) {
+    const focusableElements = element.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+    );
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    element.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+    });
+}</code></pre>
+
+                <h2>Color and Contrast</h2>
+                <p>Ensure sufficient color contrast for readability and don't rely solely on color to convey information.</p>
+
+                <h3>Contrast Ratios</h3>
+                <ul>
+                    <li><strong>Normal text:</strong> 4.5:1 minimum contrast ratio</li>
+                    <li><strong>Large text:</strong> 3:1 minimum contrast ratio</li>
+                    <li><strong>Graphics and UI components:</strong> 3:1 minimum contrast ratio</li>
+                </ul>
+
+                <h3>Color Independence</h3>
+                <pre><code>&lt;!-- Bad: Color-only indication --&gt;
+&lt;p style="color: red"&gt;Error: Invalid input&lt;/p&gt;
+
+&lt;!-- Good: Multiple indicators --&gt;
+&lt;p class="error"&gt;
+    &lt;strong&gt;Error:&lt;/strong&gt; Invalid input
+&lt;/p&gt;</code></pre>
+
+                <h2>Images and Media</h2>
+                <p>Provide appropriate alternatives for visual and auditory content.</p>
+
+                <h3>Alt Text for Images</h3>
+                <pre><code>&lt;!-- Decorative image --&gt;
+&lt;img src="decorative.png" alt="" /&gt;
+
+&lt;!-- Informative image --&gt;
+&lt;img src="chart.png" alt="Sales growth from 2020 to 2024 showing 150% increase" /&gt;
+
+&lt;!-- Complex image --&gt;
+&lt;img src="diagram.png" alt="Flowchart showing user registration process" /&gt;
+&lt;p&gt;Detailed description of the diagram...&lt;/p&gt;</code></pre>
+
+                <h3>Video and Audio</h3>
+                <ul>
+                    <li>Provide captions for video content</li>
+                    <li>Include transcripts for audio content</li>
+                    <li>Ensure media controls are accessible</li>
+                    <li>Avoid auto-playing media</li>
+                </ul>
+
+                <h2>Forms and Input</h2>
+                <p>Make forms accessible with proper labels, error handling, and clear instructions.</p>
+
+                <h3>Form Labels</h3>
+                <pre><code>&lt;!-- Explicit label --&gt;
+&lt;label for="email"&gt;Email Address&lt;/label&gt;
+&lt;input type="email" id="email" name="email" /&gt;
+
+&lt;!-- Implicit label --&gt;
+&lt;label&gt;
+    Email Address
+    &lt;input type="email" name="email" /&gt;
+&lt;/label&gt;</code></pre>
+
+                <h3>Error Handling</h3>
+                <pre><code>&lt;div class="form-group"&gt;
+    &lt;label for="password"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="password" name="password"
+           aria-describedby="password-error" /&gt;
+    &lt;div id="password-error" class="error-message" role="alert"&gt;
+        Password must be at least 8 characters long
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                <h2>Testing Accessibility</h2>
+                <p>Use a combination of automated tools, manual testing, and user testing to ensure accessibility.</p>
+
+                <h3>Automated Tools</h3>
+                <ul>
+                    <li><strong>axe-core:</strong> Automated accessibility testing</li>
+                    <li><strong>Lighthouse:</strong> Built into Chrome DevTools</li>
+                    <li><strong>WAVE:</strong> Web accessibility evaluation tool</li>
+                    <li><strong>Color Contrast Analyzer:</strong> For checking contrast ratios</li>
+                </ul>
+
+                <h3>Manual Testing</h3>
+                <ul>
+                    <li>Test with keyboard only (Tab through the page)</li>
+                    <li>Use screen readers (NVDA, JAWS, VoiceOver)</li>
+                    <li>Test at different zoom levels (200%, 400%)</li>
+                    <li>Check color blindness simulations</li>
+                </ul>
+
+                <h2>Legal and Business Benefits</h2>
+                <p>Accessibility isn't just the right thing to do – it makes good business sense:</p>
+
+                <ul>
+                    <li><strong>Legal compliance:</strong> WCAG guidelines are often legally required</li>
+                    <li><strong>Wider audience:</strong> Reach more potential users</li>
+                    <li><strong>Better SEO:</strong> Semantic HTML improves search rankings</li>
+                    <li><strong>Improved usability:</strong> Benefits all users, not just those with disabilities</li>
+                    <li><strong>Future-proofing:</strong> Adaptable to new technologies and devices</li>
+                </ul>
+
+                <h2>Common Mistakes to Avoid</h2>
+                <ul>
+                    <li>Using color as the only way to convey information</li>
+                    <li>Missing alt text on images</li>
+                    <li>Poor heading structure</li>
+                    <li>Non-keyboard accessible interactive elements</li>
+                    <li>Auto-playing media without controls</li>
+                    <li>Forms without proper labels</li>
+                    <li>Insufficient color contrast</li>
+                </ul>
+
+                <h2>Resources and Learning</h2>
+                <ul>
+                    <li><strong>WCAG Guidelines:</strong> Official accessibility standards</li>
+                    <li><strong>WebAIM:</strong> Comprehensive accessibility resources</li>
+                    <li><strong>MDN Accessibility:</strong> Developer documentation</li>
+                    <li><strong>a11y Project:</strong> Community-driven accessibility resources</li>
+                    <li><strong>Deque University:</strong> Free accessibility training</li>
+                </ul>
+
+                <h2>Final Thoughts</h2>
+                <p>Building accessible web applications is about creating inclusive digital experiences that work for everyone. Accessibility should be integrated into your development process from the beginning, not added as an afterthought.</p>
+
+                <p>Start small by focusing on semantic HTML, proper color contrast, and keyboard navigation. Gradually incorporate more advanced accessibility techniques as you gain experience. Remember: when you make your site accessible, you make it better for all users!</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

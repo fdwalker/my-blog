@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of CSS Grid and Flexbox - My Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-post-full {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog-post-full h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 1rem;
+        }
+
+        .blog-content {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-content h2 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .blog-content h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .blog-content pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .blog-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <p>Thoughts, ideas, and stories</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <article class="blog-post-full">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+
+            <h1>The Power of CSS Grid and Flexbox</h1>
+            <div class="blog-date">Published on November 28, 2024</div>
+
+            <div class="blog-content">
+                <p>Modern CSS layout techniques have revolutionized how we build websites. CSS Grid and Flexbox provide powerful, flexible ways to create complex layouts that were previously difficult or impossible with traditional methods. This comprehensive guide will help you understand when and how to use each layout system effectively.</p>
+
+                <h2>CSS Flexbox: One-Dimensional Layouts</h2>
+                <p>Flexbox is designed for one-dimensional layouts – either rows or columns. It's perfect for components like navigation bars, card layouts, and centering content.</p>
+
+                <h3>Basic Flexbox Setup</h3>
+                <pre><code>.container {
+    display: flex;
+    justify-content: space-between; /* Horizontal alignment */
+    align-items: center; /* Vertical alignment */
+}</code></pre>
+
+                <h3>Flexbox Properties</h3>
+                <ul>
+                    <li><strong>flex-direction:</strong> row, column, row-reverse, column-reverse</li>
+                    <li><strong>justify-content:</strong> flex-start, center, space-between, space-around</li>
+                    <li><strong>align-items:</strong> stretch, flex-start, center, flex-end</li>
+                    <li><strong>flex-wrap:</strong> nowrap, wrap, wrap-reverse</li>
+                    <li><strong>flex:</strong> shorthand for flex-grow, flex-shrink, flex-basis</li>
+                </ul>
+
+                <h3>Practical Flexbox Example: Navigation Bar</h3>
+                <pre><code>.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+}</code></pre>
+
+                <h2>CSS Grid: Two-Dimensional Layouts</h2>
+                <p>CSS Grid is designed for two-dimensional layouts, giving you control over both rows and columns simultaneously. It's ideal for complex page layouts and component grids.</p>
+
+                <h3>Basic Grid Setup</h3>
+                <pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Three columns */
+    grid-template-rows: auto 1fr auto; /* Three rows */
+    gap: 1rem;
+}</code></pre>
+
+                <h3>Grid Properties</h3>
+                <ul>
+                    <li><strong>grid-template-columns:</strong> Define column sizes</li>
+                    <li><strong>grid-template-rows:</strong> Define row sizes</li>
+                    <li><strong>grid-template-areas:</strong> Name grid areas for semantic layouts</li>
+                    <li><strong>grid-column / grid-row:</strong> Position items in the grid</li>
+                    <li><strong>gap:</strong> Spacing between grid items</li>
+                </ul>
+
+                <h3>Practical Grid Example: Page Layout</h3>
+                <pre><code>.page-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header header"
+        "sidebar main aside"
+        "footer footer footer";
+    min-height: 100vh;
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.aside { grid-area: aside; }
+.footer { grid-area: footer; }</code></pre>
+
+                <h2>Flexbox vs Grid: When to Use Which?</h2>
+
+                <h3>Use Flexbox When:</h3>
+                <ul>
+                    <li>You need to align items in a single row or column</li>
+                    <li>Content dictates the layout size</li>
+                    <li>You want items to wrap or flow naturally</li>
+                    <li>You're building component-level layouts</li>
+                </ul>
+
+                <h3>Use Grid When:</h3>
+                <ul>
+                    <li>You need precise control over rows and columns</li>
+                    <li>You're creating page-level layouts</li>
+                    <li>You want to overlap content</li>
+                    <li>You need complex, two-dimensional layouts</li>
+                </ul>
+
+                <h2>Advanced Grid Techniques</h2>
+
+                <h3>Responsive Grids with auto-fit and auto-fill</h3>
+                <pre><code>.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}</code></pre>
+
+                <h3>Named Grid Lines</h3>
+                <pre><code>.named-grid {
+    display: grid;
+    grid-template-columns: [start] 1fr [middle] 2fr [end];
+    grid-template-rows: [top] auto [bottom];
+}
+
+.item {
+    grid-column: start / middle;
+    grid-row: top / bottom;
+}</code></pre>
+
+                <h2>Combining Flexbox and Grid</h2>
+                <p>These layout systems work great together. Use Grid for the overall page layout, and Flexbox for component-level alignment.</p>
+
+                <pre><code>/* Grid for page layout */
+.page {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+/* Flexbox for card components */
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}</code></pre>
+
+                <h2>Browser Support and Fallbacks</h2>
+                <p>Both Flexbox and Grid have excellent browser support, but you should provide fallbacks for older browsers:</p>
+
+                <pre><code>/* Fallback for older browsers */
+.container {
+    display: block; /* Fallback */
+    display: flex; /* Modern browsers */
+}
+
+/* Progressive enhancement */
+@supports (display: grid) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+}</code></pre>
+
+                <h2>Performance Considerations</h2>
+                <ul>
+                    <li>Avoid deep nesting of flex/grid containers</li>
+                    <li>Use appropriate units (fr units for grid, percentages for flexibility)</li>
+                    <li>Minimize layout recalculations</li>
+                    <li>Consider content-based sizing for better performance</li>
+                </ul>
+
+                <h2>Common Mistakes to Avoid</h2>
+                <ul>
+                    <li>Using floats when flexbox/grid would be better</li>
+                    <li>Overusing absolute positioning</li>
+                    <li>Not considering content flow</li>
+                    <li>Ignoring accessibility implications</li>
+                    <li>Not testing across different screen sizes</li>
+                </ul>
+
+                <h2>Learning Resources</h2>
+                <ul>
+                    <li><strong>CSS-Tricks Complete Guide:</strong> Comprehensive reference</li>
+                    <li><strong>Grid by Example:</strong> Practical grid examples</li>
+                    <li><strong>Flexbox Froggy:</strong> Interactive learning game</li>
+                    <li><strong>CSS Grid Garden:</strong> Another interactive game</li>
+                </ul>
+
+                <h2>Future of CSS Layout</h2>
+                <p>CSS continues to evolve with new layout features:</p>
+
+                <ul>
+                    <li><strong>Container queries:</strong> Responsive design based on container size</li>
+                    <li><strong>Masonry layout:</strong> Pinterest-style layouts</li>
+                    <li><strong>Subgrid:</strong> Nested grids that align with parent grids</li>
+                    <li><strong>Logical properties:</strong> Better internationalization support</li>
+                </ul>
+
+                <h2>Final Thoughts</h2>
+                <p>CSS Grid and Flexbox have transformed modern web development, making complex layouts accessible to all developers. Start with simple layouts and gradually incorporate more advanced techniques as you gain confidence.</p>
+
+                <p>Remember: the best layout system is the one that solves your specific problem most elegantly. Don't force a tool to fit – choose the right tool for the job!</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
