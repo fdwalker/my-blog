@@ -108,6 +108,83 @@
         .read-more:hover {
             text-decoration: underline;
         }
+
+        /* Category filter styles */
+        .filter-container {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: #e9ecef;
+        }
+
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .filter-btn.all-posts {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+
+        .filter-btn.all-posts:hover,
+        .filter-btn.all-posts.active {
+            background: #34495e;
+            border-color: #34495e;
+        }
+
+        /* Category tags styles */
+        .post-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #bbdefb;
+        }
+
+        .blog-post.hidden {
+            display: none;
+        }
+
+        .no-posts-message {
+            text-align: center;
+            padding: 3rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +202,12 @@
     </nav>
     
     <div class="container">
+        <div class="filter-container">
+            <div class="filter-buttons">
+                <button class="filter-btn all-posts active" data-filter="all">All Posts</button>
+                <!-- Filter buttons will be dynamically generated -->
+            </div>
+        </div>
         <div id="posts-container">
             <!-- Blog posts will be loaded here dynamically -->
         </div>

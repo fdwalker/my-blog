@@ -154,6 +154,92 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        /* Category tags and related posts styles */
+        .post-meta {
+            border-top: 1px solid #ecf0f1;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .post-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #bbdefb;
+        }
+
+        .related-posts {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .related-posts h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-post-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #ecf0f1;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .related-post-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .related-post-card h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        .related-post-card .blog-date {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .related-post-card .read-more {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .related-post-card .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .no-related-posts {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -176,6 +262,11 @@
 
             <h1>The Power of CSS Grid and Flexbox</h1>
             <div class="blog-date">Published on November 28, 2024</div>
+
+            <div class="post-categories">
+                <span class="category-tag">CSS</span>
+                <span class="category-tag">Layout</span>
+            </div>
 
             <div class="blog-content">
                 <p>Modern CSS layout techniques have revolutionized how we build websites. CSS Grid and Flexbox provide powerful, flexible ways to create complex layouts that were previously difficult or impossible with traditional methods. This comprehensive guide will help you understand when and how to use each layout system effectively.</p>
@@ -373,6 +464,115 @@
                 <p>Remember: the best layout system is the one that solves your specific problem most elegantly. Don't force a tool to fit – choose the right tool for the job!</p>
             </div>
         </article>
+
+        <div class="related-posts">
+            <h3>More in CSS & Layout</h3>
+            <div id="related-posts-container" class="related-posts-grid">
+                <!-- Related posts will be loaded here -->
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Related posts loader for individual blog posts
+        class RelatedPostsLoader {
+            constructor(currentPostId, currentCategories) {
+                this.currentPostId = currentPostId;
+                this.currentCategories = currentCategories;
+                this.container = document.getElementById('related-posts-container');
+                this.posts = [];
+            }
+
+            // Load posts and display related ones
+            async loadRelatedPosts() {
+                try {
+                    const response = await fetch('../posts.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    this.posts = await response.json();
+                    this.displayRelatedPosts();
+                } catch (error) {
+                    console.error('Error loading related posts:', error);
+                    this.showError('Failed to load related posts.');
+                }
+            }
+
+            // Find and display related posts
+            displayRelatedPosts() {
+                // Find posts that share categories but are not the current post
+                const relatedPosts = this.posts.filter(post => {
+                    if (post.id === this.currentPostId) return false;
+
+                    // Check if post shares any categories
+                    return post.categories && post.categories.some(cat =>
+                        this.currentCategories.includes(cat)
+                    );
+                });
+
+                if (relatedPosts.length === 0) {
+                    this.showNoRelatedPosts();
+                    return;
+                }
+
+                // Clear container and display related posts
+                this.container.innerHTML = '';
+                relatedPosts.forEach(post => {
+                    const postElement = this.createRelatedPostElement(post);
+                    this.container.appendChild(postElement);
+                });
+            }
+
+            // Create HTML element for a related post
+            createRelatedPostElement(post) {
+                const div = document.createElement('div');
+                div.className = 'related-post-card';
+
+                div.innerHTML = `
+                    <h4>${this.escapeHtml(post.title)}</h4>
+                    <div class="blog-date">Published on ${this.escapeHtml(post.date)}</div>
+                    <p>${this.escapeHtml(post.preview)}</p>
+                    <a href="${this.escapeHtml(post.url)}" class="read-more">Read More →</a>
+                `;
+
+                return div;
+            }
+
+            // Show message when no related posts found
+            showNoRelatedPosts() {
+                this.container.innerHTML = `
+                    <div class="no-related-posts">
+                        <p>No related posts found in the same categories.</p>
+                    </div>
+                `;
+            }
+
+            // Show error message
+            showError(message) {
+                this.container.innerHTML = `
+                    <div class="no-related-posts" style="color: #c33;">
+                        <p>${this.escapeHtml(message)}</p>
+                    </div>
+                `;
+            }
+
+            // Simple HTML escaping
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // Initialize related posts when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Current post data - update these for each post page
+            const currentPostId = 4;
+            const currentCategories = ['CSS', 'Layout'];
+
+            const relatedPostsLoader = new RelatedPostsLoader(currentPostId, currentCategories);
+            relatedPostsLoader.loadRelatedPosts();
+        });
+    </script>
 </body>
 </html>

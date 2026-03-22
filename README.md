@@ -2,6 +2,9 @@
 
 This blog uses a dynamic system to load blog posts from a JSON file, making it easy to add, remove, and manage content without editing HTML.
 
+## 🌐 Live Blog
+**View the live blog at:** https://fdwalker.github.io/my-blog/index.html
+
 ## How It Works
 
 1. **posts.json** - Contains all blog post metadata (title, date, preview, URL)
@@ -25,12 +28,34 @@ Add a new entry to `posts.json`:
   "title": "Your New Blog Post Title",
   "date": "January 1, 2025",
   "preview": "A brief preview of your blog post content...",
-  "url": "posts/post7.html"
+  "url": "posts/post7.html",
+  "categories": ["Category1", "Category2"]
 }
 ```
 
 ### 3. Update the ID
 Make sure the `id` is unique and sequential.
+
+## Categories and Filtering
+
+The blog includes a dynamic category system:
+
+- **Category Tags**: Each post displays its categories as colored tags
+- **Filter Buttons**: Automatically generated filter buttons for each category
+- **Filter by Category**: Click any category button to show only posts in that category
+- **Show All Posts**: "All Posts" button shows everything
+
+### Available Categories
+- **Beginner**: Introductory content for new developers
+- **Fundamentals**: Core concepts and basics
+- **Best Practices**: Coding standards and professional practices
+- **Development**: General development topics
+- **CSS**: Cascading Style Sheets and styling
+- **Responsive**: Mobile-first and responsive design
+- **Layout**: CSS Grid, Flexbox, and layout techniques
+- **JavaScript**: JavaScript language features and usage
+- **ES6**: Modern JavaScript (ES6+) features
+- **Accessibility**: Web accessibility and inclusive design
 
 ## File Structure
 
@@ -48,11 +73,13 @@ my-blog/
 
 ## Features
 
-- **Dynamic Loading**: Posts are loaded from JSON, no HTML editing required
-- **Error Handling**: Graceful error messages if JSON fails to load
-- **Security**: HTML escaping prevents XSS attacks
-- **Responsive**: Works on all device sizes
-- **Easy Maintenance**: Add posts by editing JSON only
+- **🔄 Dynamic Loading**: Posts load automatically from JSON when the page loads
+- **🏷️ Category System**: Posts are tagged with categories for better organization
+- **🔍 Filter System**: Filter posts by category with one-click buttons
+- **🛡️ Error Handling**: Graceful error messages if JSON fails to load
+- **🔒 Security**: HTML escaping prevents XSS attacks
+- **📱 Responsive**: Works on all device sizes
+- **🔧 Easy Maintenance**: Add posts by editing JSON only
 
 ## Testing
 
