@@ -557,12 +557,59 @@
 
             async loadRelatedPosts() {
                 try {
-                    const response = await fetch('../posts.json');
-                    if (!response.ok) {
-                        throw new Error('Failed to load posts data');
-                    }
-
-                    const data = await response.json();
+                    // Inline posts data to avoid CORS issues on live servers
+                    const data = {
+                        posts: [
+                            {
+                                "id": 1,
+                                "title": "Getting Started with Web Development",
+                                "date": "December 15, 2024",
+                                "preview": "Learn the basics of HTML, CSS, and JavaScript to start your web development journey. This post covers essential concepts every beginner should know.",
+                                "filename": "posts/post1.html",
+                                "categories": ["Beginner", "Fundamentals"]
+                            },
+                            {
+                                "id": 2,
+                                "title": "Best Practices for Clean Code",
+                                "date": "December 10, 2024",
+                                "preview": "Explore techniques and principles for writing maintainable and readable code. Discover how clean code practices improve collaboration and productivity.",
+                                "filename": "posts/post2.html",
+                                "categories": ["Best Practices", "Development"]
+                            },
+                            {
+                                "id": 3,
+                                "title": "Understanding Responsive Design",
+                                "date": "December 5, 2024",
+                                "preview": "Master the art of creating websites that look great on all devices. Learn about media queries, flexible layouts, and mobile-first design principles.",
+                                "filename": "posts/post3.html",
+                                "categories": ["CSS", "Responsive"]
+                            },
+                            {
+                                "id": 4,
+                                "title": "The Power of CSS Grid and Flexbox",
+                                "date": "November 28, 2024",
+                                "preview": "Dive deep into modern CSS layout techniques. Compare CSS Grid and Flexbox, understand when to use each, and see practical examples for creating complex layouts.",
+                                "filename": "posts/post4.html",
+                                "categories": ["CSS", "Layout"]
+                            },
+                            {
+                                "id": 5,
+                                "title": "JavaScript ES6+ Features You Should Know",
+                                "date": "November 20, 2024",
+                                "preview": "Explore the most important ES6+ features that every modern JavaScript developer should master. From arrow functions to async/await, learn how these features improve code quality.",
+                                "filename": "posts/post5.html",
+                                "categories": ["JavaScript", "ES6"]
+                            },
+                            {
+                                "id": 6,
+                                "title": "Building Accessible Web Applications",
+                                "date": "November 15, 2024",
+                                "preview": "Learn the fundamentals of web accessibility and how to create inclusive web experiences. Discover ARIA attributes, semantic HTML, and testing tools for accessibility compliance.",
+                                "filename": "posts/post6.html",
+                                "categories": ["Accessibility", "Best Practices"]
+                            }
+                        ]
+                    };
                     const relatedPosts = this.findRelatedPosts(data.posts);
                     this.renderRelatedPosts(relatedPosts);
                 } catch (error) {
